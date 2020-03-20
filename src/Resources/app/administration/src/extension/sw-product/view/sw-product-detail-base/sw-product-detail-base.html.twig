@@ -1,0 +1,21 @@
+{% block sw_product_detail_base_settings_card %}
+    {% parent %}
+    <sw-many-to-many-assignment-card
+        v-if="!isLoading"
+        class="sw-category-detail-base__products"
+        title="Links"
+        :entityCollection="product.extensions.productLinks"
+        :columns="productLinksColumns"
+        :isLoading="isLoading"
+        :localMode="product.isNew()"
+        :criteria="productLinksCriteria"
+        placeholder="Select Product"
+        :searchableFields="['product.name', 'product.id']">
+
+        <template #empty-state>
+            <img :src="'/administration/static/img/empty-states/products-empty-state.svg' | asset">
+
+            <p>Empty</p>
+        </template>
+    </sw-many-to-many-assignment-card>
+{% endblock %}
